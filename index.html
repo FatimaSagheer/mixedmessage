@@ -1,1 +1,105 @@
-tml
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Message Generator</title>
+  </head>
+  <body>
+    <h1>Random Message Generator</h1>
+
+    <label for="categorySelect">Select a Category:</label>
+    <select id="categorySelect">
+      <option value="Inspirational">Inspirational</option>
+      <option value="Funny">Funny</option>
+      <option value="Motivational">Motivational</option>
+    </select>
+
+    <button id="generateButton">Generate Message</button>
+
+    <div id="messageContainer">
+      <h2>Generated Message</h2>
+      <p id="messageText"></p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const categories = ["Inspirational", "Funny", "Motivational"];
+        const inspirationalMessages = [
+          "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+          "Your time is limited, don't waste it living someone else's life.",
+          "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+          "The only way to do great work is to love what you do.",
+          "The future belongs to those who believe in the beauty of their dreams.",
+          "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.",
+          "The only limit to our realization of tomorrow will be our doubts of today.",
+          "Don't watch the clock; do what it does. Keep going.",
+          "The road to success and the road to failure are almost exactly the same. The only difference is you.",
+          "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this!",
+        ];
+
+        const funnyMessages = [
+          "Why don't scientists trust atoms? Because they make up everything!",
+          "I used to play piano by ear, but now I use my hands.",
+          "Parallel lines have so much in common. It's a shame they'll never meet.",
+          "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+          "Why did the scarecrow win an award? Because he was outstanding in his field!",
+          "I couldn't figure out why the baseball kept getting larger. Then it hit me.",
+          "I'm on a seafood diet. I see food and I eat it.",
+          "I used to be a baker, but I couldn't make enough dough.",
+          "Why did the bicycle fall over? Because it was two-tired.",
+          "When everything is coming your way, you're in the wrong lane.",
+        ];
+
+        const motivationalMessages = [
+          "The only way to do great work is to love what you do. Don't settle.",
+          "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+          "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+          "The only limit to our realization of tomorrow will be our doubts of today.",
+          "The future depends on what you do today.",
+          "Success is walking from failure to failure with no loss of enthusiasm.",
+          "Your time is limited, don't waste it living someone else's life.",
+          "The harder you work for something, the greater you'll feel when you achieve it.",
+          "Believe you can and you're halfway there.",
+          "Don't watch the clock; do what it does. Keep going.",
+        ];
+
+        // Function to generate a random message
+        function generateRandomMessage() {
+          const categorySelect = document.getElementById("categorySelect");
+          const selectedCategory = categorySelect.value;
+
+          let messages;
+          switch (selectedCategory) {
+            case "Inspirational":
+              messages = inspirationalMessages;
+              break;
+            case "Funny":
+              messages = funnyMessages;
+              break;
+            case "Motivational":
+              messages = motivationalMessages;
+              break;
+            default:
+              messages = [];
+          }
+
+          const randomMessage =
+            messages[Math.floor(Math.random() * messages.length)];
+
+          return { category: selectedCategory, message: randomMessage };
+        }
+
+        // Function to display the generated message
+        function displayMessage() {
+          const randomMessage = generateRandomMessage();
+          const messageText = document.getElementById("messageText");
+          messageText.textContent = `Category: ${randomMessage.category}\nMessage: ${randomMessage.message}`;
+        }
+
+        // Attach the click event listener to the "Generate Message" button
+        document
+          .getElementById("generateButton")
+          .addEventListener("click", displayMessage);
+      });
+    </script>
+  </body>
+</html>
